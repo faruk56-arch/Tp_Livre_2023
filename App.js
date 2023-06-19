@@ -1,20 +1,33 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import CategoriesScreen from './screens/CategoriesScreen';
+import BooksScreen from './screens/BooksScreen';
+import BookDetailsScreen from './screens/BookDetailsScreen';
 
-export default function App() {
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Search"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#3F51B5',  // Background color of the header bar
+          },
+          headerTintColor: '#fff',  // Color of the header text and icons
+          headerTitleStyle: {
+            fontWeight: 'bold',  // Font weight of the header title
+          },
+        }}
+      >
+        <Stack.Screen name="Categories" component={CategoriesScreen} options={{ title: 'Catégories' }} />
+        <Stack.Screen name="Books" component={BooksScreen} options={{ title: 'Livres' }} />
+        <Stack.Screen name="BookDetail" component={BookDetailsScreen} options={{ title: 'Détails du livre' }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
