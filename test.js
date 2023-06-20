@@ -6,13 +6,10 @@ const CategoriesScreen = props => {
     const [search, setSearch] = useState('');
     const [filteredCategories, setFilteredCategories] = useState(CATEGORIES);
 
-    const colors = ['#ffadad', '#ffd6a5', '#fdffb6', '#caffbf', '#9bf6ff', '#a0c4ff', '#bdb2ff', '#ffc6ff'];
-
     const renderGridItem = (itemData) => {
-        const color = colors[itemData.index % colors.length];
         return (
             <TouchableOpacity
-                style={{ ...styles.gridItem, backgroundColor: color }}
+                style={styles.gridItem}
                 onPress={() => {
                     props.navigation.navigate('Books', { categoryId: itemData.item.id });
                 }}
@@ -52,6 +49,7 @@ const CategoriesScreen = props => {
                     props.navigation.navigate('Map');
                 }}
             />
+            <Text style={styles.footer}> @Reserved all Right</Text>
         </View>
     );
 };
@@ -76,7 +74,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 22,
-        color: 'black',
+        color: 'white',
     },
     searchBar: {
         height: 50,
